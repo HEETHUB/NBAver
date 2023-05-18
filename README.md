@@ -1,4 +1,14 @@
 # NBAver
 
-- JQuad와 진행중인 프로젝트의 레포지토리
-- NBA(National Basketball Association) 경기 및 선수들의 정보와 각종 관련 뉴스, 승부예측 투표 및 커뮤니티 기능을 제공하는 웹사이트이다. 
+- Pair Project with JQuad
+- We're making Korean NBA website providing various information about NBA including player stats, matches.
+
+### commits by me
+- 05.17 - first commit : build basic architecture 
+  - Spring boot, MVC pattern
+  - created basic Database using MySql
+  - implemented website user management(registration, log in, log out) -> used session-based log in function. I'm planning to change it to token-based. 
+
+- 05.18 - made Database of NBA players
+  - NBAPlayer DTO includes player's name, id, and NBA link. 
+  - linked DB and server : controller -> service -> dao
