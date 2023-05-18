@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnc.nbaver.model.dao.NBADao">
+	<select id="selectAll" resultType="NBAPlayer">
+		SELECT * FROM nba_players
+	</select>
+
+	<select id="selectOne" parameterType="String" resultType="NBAPlayer">
+		SELECT * FROM nba_players
+		WHERE NBAName = #{playerName}
+	</select>
+</mapper>
+
