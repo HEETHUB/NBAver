@@ -43,19 +43,19 @@ public class NBARestController {
 	}
 	
 	// 검색한 선수 스탯 가져오기 
-	@GetMapping("/stat/{playerName}")
-	public ResponseEntity<?> getPlayerStat(@PathVariable("playerName") String playerName){
-		NBAPlayer player = nbaService.getPlayer(playerName);
-		String url = player.getLink();
-		try {
-			Document doc = Jsoup.connect(url).get();
-			Elements el = doc.select("#__next > div.Layout_base__6IeUC.Layout_justNav__2H4H0 > div.Layout_mainContent__jXliI > section > div.MaxWidthContainer_mwc__ID5AG > section.Block_block__62M07.nba-stats-content-block > div > div.Crom_base__f0niE > div.Crom_container__C45Ti.crom-container > table > tbody a");
-			int elSize = el.size();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+//	@GetMapping("/stat/{playerName}")
+//	public ResponseEntity<?> getPlayerStat(@PathVariable("playerName") String playerName){
+//		NBAPlayer player = nbaService.getPlayer(playerName);
+//		String url = player.getLink();
+//		try {
+//			Document doc = Jsoup.connect(url).get();
+//			Elements el = doc.select("#__next > div.Layout_base__6IeUC.Layout_justNav__2H4H0 > div.Layout_mainContent__jXliI > section > div.MaxWidthContainer_mwc__ID5AG > section.Block_block__62M07.nba-stats-content-block > div > div.Crom_base__f0niE > div.Crom_container__C45Ti.crom-container > table > tbody a");
+//			int elSize = el.size();
+//			
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//	}
 }
