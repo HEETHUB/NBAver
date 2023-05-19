@@ -1,6 +1,6 @@
 # NBAver
 
-- Pair Project with JQuad
+- Pair Project with JQuad(https://github.com/JaewoongHur)
 - We're making Korean NBA website providing various information about NBA including player stats, matches.
 
 ### commits by myself(HEET)
