@@ -24,3 +24,5 @@
 - 05.20 - build NBA Teams' season stats crawled from naver sports (https://sports.news.naver.com/basketball/)
   - I used selenium to get players' stats yesterday because data were displayed on dynamic web page.
   - However, I used Jsoup today to get NBA teams' stats because thankfully, it was displayed on static web page..
+
+what to do -> build backend server and DB normalization!! 
