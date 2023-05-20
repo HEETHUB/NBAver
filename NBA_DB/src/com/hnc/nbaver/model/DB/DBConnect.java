@@ -10,21 +10,27 @@ import java.sql.Statement;
 
 public class DBConnect {
 	private static String URL = "jdbc:mysql://localhost:3306/nbadb?serverTimezone=UTC";
-	private static String USERNAME = "root";
-	private static String PASSWORD = "ssafy";
-	private static Connection conn;
+	private static String USERNAME = "nba";
+	private static String PASSWORD = "nba";
 	
-	public void getConnection() {
+	private static Connection conn;
+	private static JsoupService js = JsoupService.getInstance();
+	
+	// make Singleton 
+	private static DBConnect instance = new DBConnect();
+	private DBConnect() {
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			System.out.println("success");
-			Statement stmt = conn.createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+	public static DBConnect getInstance() {
+		return instance;
+	}
 	
-	public List<String[]> getFromNba_players() {
+	public List<String[]> getFromNbaPlayers() {
 		List<String[]> res = new ArrayList<>();
 		
 		String sql = "select * from nba_players";
@@ -37,15 +43,10 @@ public class DBConnect {
             	String[] temp = new String[4];
             	for (int i = 1; i <= 4; i++)
             		temp[i-1] = rs.getString(i);
-//                String NBAName = rs.getString(1);
-//                String NBALink = rs.getString(2);
-//                String NBAID = rs.getString(3);
-//                String NBABirthDate = rs.getString(4);
-//                System.out.println(NBAName+" "+NBALink+" "+NBAID);
                 res.add(temp);
             }
         } catch (Exception e) {
-            System.out.println("select ¸Þ¼­µå ¿¹¿Ü¹ß»ý");
+            System.out.println("select ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ü¹ß»ï¿½");
         }    finally {
             try {
                 if(pstmt!=null && !pstmt.isClosed()) {
@@ -57,7 +58,7 @@ public class DBConnect {
 	}
 	
 	public void updatePlayerStat(String playerName, int playerId, String[] stats) {
-		// Äõ¸®¹®
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String sql = "insert into stat values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		PreparedStatement pstmt = null;
@@ -76,10 +77,45 @@ public class DBConnect {
 			
 			int result = pstmt.executeUpdate();
 			if (result == 1)
-				System.out.println(playerName+"ÀÇ "+stats[0]+"³âµµ µ¥ÀÌÅÍ »ðÀÔ ¼º°ø!");
+				System.out.println(playerName+"ï¿½ï¿½ "+stats[0]+"ï¿½âµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("½ÇÆÐ..");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½..");
+		}
+	}
+	
+	public void updateTeamStat(String conf, String[] stats) {
+		String sql = "insert into team_stat values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			String SNAME = js.getShortTeamName(stats[1]);
+			String CONF = conf;
+			pstmt.setString(1, SNAME);
+			pstmt.setString(2, CONF);
+			pstmt.setInt(3, Integer.parseInt(stats[0]));
+			pstmt.setString(4, stats[1]);
+			pstmt.setString(5, stats[2]);
+			pstmt.setInt(6, Integer.parseInt(stats[3]));
+			pstmt.setInt(7, Integer.parseInt(stats[4]));
+			pstmt.setInt(8, Integer.parseInt(stats[5]));
+			pstmt.setDouble(9, Double.parseDouble(stats[6]));
+			pstmt.setDouble(10, Double.parseDouble(stats[7]));
+			pstmt.setInt(11, Integer.parseInt(stats[8]));
+			pstmt.setInt(12, Integer.parseInt(stats[9]));
+			pstmt.setInt(13, Integer.parseInt(stats[10]));
+			pstmt.setInt(14, Integer.parseInt(stats[11]));
+			pstmt.setInt(15, Integer.parseInt(stats[12]));
+			pstmt.setInt(16, Integer.parseInt(stats[13]));
+			pstmt.setString(17, stats[14]);
+			
+			int result = pstmt.executeUpdate();
+			if (result == 1)
+				System.out.println(SNAME+" ë°ì´í„° ìž…ë ¥ ì„±ê³µ!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("ë°ì´í„° ìž…ë ¥ ì‹¤íŒ¨");
 		}
 	}
 }

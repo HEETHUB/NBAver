@@ -12,16 +12,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Selenium {
 	private static ChromeOptions options;
 	private static WebDriver driver;
+	private static Selenium instance = new Selenium();
 	
-	public static void main(String[] args) {
+	private Selenium() {
 		options = new ChromeOptions();
 		options.addArguments("--start-minimized");
 		options.addArguments("--window-size=1,1");
 		driver = new ChromeDriver(options);
-		
-		DBConnect db = new DBConnect();
-		db.getConnection();
-		List<String[]> players = db.getFromNba_players();
+	}
+	
+	public static Selenium getInstance() {
+		return instance;
+	}
+	
+	public void updatePlayerStat() {
+		DBConnect db = DBConnect.getInstance();
+		List<String[]> players = db.getFromNbaPlayers();
 		
 		int playerNum = players.size();
 		
@@ -30,7 +36,7 @@ public class Selenium {
 			int playerId = Integer.parseInt(players.get(i)[2]);
 			String url = "https://www.nba.com/stats/player/"+players.get(i)[2];
 			try {
-				System.out.println("ÃÑ "+playerNum+"¸íÀÇ ¼±¼ö Áß "+(i+1)+"¹øÂ° "+playerName+"ÀÇ µ¥ÀÌÅÍ ¹Þ¾Æ¿À´Â Áß");
+				System.out.println("ï¿½ï¿½ "+playerNum+"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ "+(i+1)+"ï¿½ï¿½Â° "+playerName+"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½ ï¿½ï¿½");
 				driver.get(url);
 				WebElement table = driver.findElement(By.cssSelector("#__next > div.Layout_base__6IeUC.Layout_justNav__2H4H0 > div.Layout_mainContent__jXliI > section > div.MaxWidthContainer_mwc__ID5AG > section.Block_block__62M07.nba-stats-content-block > div > div.Crom_base__f0niE > div.Crom_container__C45Ti.crom-container > table > tbody"));
 				String[] stat_arr = table.getText().split("\n");
@@ -39,7 +45,7 @@ public class Selenium {
 					db.updatePlayerStat(playerName, playerId, stat);
 				}
 			} catch (Exception e) {
-				System.out.println(playerId+" "+playerName+" µ¥ÀÌÅÍ ¾øÀ½");
+				System.out.println(playerId+" "+playerName+" ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
 		}
 		driver.quit();
