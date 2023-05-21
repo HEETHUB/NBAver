@@ -28,7 +28,7 @@
 what to do -> build backend server and DB normalization!! 
 ### ERD
 - This is my DB's ERD made so far
-<img src="https://github.com/HEETHUB/NBAver/assets/113952597/c966a41c-a1e5-4f0b-a85d-ac74750e65f6">
+<img src="https://github.com/HEETHUB/NBAver/assets/113952597/acb939f5-f5ac-4eb2-8619-92bf60fda203">
 
 ### Here's a mockup image we're planning to make!! (some parts are copied from naver sports section)
 <img src="https://github.com/HEETHUB/NBAver/assets/113952597/491cb4cc-eaec-4a86-9d56-31f8fdfcd769">
