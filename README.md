@@ -31,5 +31,9 @@ what to do -> build backend server and DB normalization!!
 <img src="https://github.com/HEETHUB/NBAver/assets/113952597/1ddfd0a3-de90-47c8-a31b-1dcd0fabcde1">
 
 ### Here's a mockup image we're planning to make!! (some parts are copied from naver sports section)
+<img src="https://github.com/HEETHUB/NBAver/assets/97331332/86893e6e-f9fd-420d-9379-03b6b82ce9ad">
+
+### Here's a indexpage image we're making. 
+[IndexPage] - localhost:8081
 <img src="https://github.com/HEETHUB/NBAver/assets/97331332/24eba240-4b39-40e9-b5f8-c7212b56b2f3">
 
