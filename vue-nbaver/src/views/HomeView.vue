@@ -20,9 +20,9 @@
       <hr class="hr90"/> <br/>
     </div>
     <img src="../assets/homepic/standings.png" class="img5" />
-    <footer>
+    <div class="footer">
       <p class="footer2">© 2023 (주)허앤조콤퓨타개발단. All rights reserved.</p>
-    </footer>
+    </div>
   </div>
 </template>
 
@@ -119,13 +119,13 @@ export default {
   width: 100%;
   height: 70px;
   position: absolute;
-  bottom: 0;
-  
+  bottom: 0;  
 }
 .footer2{
   font-weight: bold;
   font-size:15px;
   position: absolute;
+  bottom: 0;
   left:0;
   margin-left: 100px;
 }

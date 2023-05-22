@@ -34,10 +34,12 @@ header {
   background: linear-gradient(45deg,skyblue, lightGreen) ;
   width: 100%;
   height: 70px;
+  position: fixed;
+  top:0;
 }
 
 .logo {
-  position: absolute;
+  position: fixed;
   top:20px;
   left: 100px;
   width: 120px;
@@ -45,7 +47,7 @@ header {
 }
 
 .menu-icon {
-  position: absolute;
+  position: fixed;
   top: 26px;
   left: 1100px;
 }
@@ -65,70 +67,70 @@ nav a.router-link-exact-active {
 }
 
 .r1 {
-  position: absolute;
+  position: fixed;
   top:30px;
   left: 250px;
   font-size: 15px;
   color : white;
 }
 .r2 {
-  position: absolute;
+  position: fixed;
   top:30px;
   left: 350px;
   font-size: 15px;
   color : white;
 }
 .r3 {
-  position: absolute;
+  position: fixed;
   top:30px;
   left: 440px;
   font-size: 15px;
   color : white;
 }
 .r4 {
-  position: absolute;
+  position: fixed;
   top:30px;
   left: 570px;
   font-size: 15px;
   color : white;
 }
 .r5 {
-  position: absolute;
+  position: fixed;
   top:30px;
   left: 630px;
   font-size: 15px;
   color : white;
 }
 .r6 {
-  position: absolute;
+  position: fixed;
   top:30px;
   left: 687px;
   font-size: 15px;
   color : white;
 }
 .r7 {
-  position: absolute;
+  position: fixed;
   top:30px;
   left: 775px;
   font-size: 15px;
   color : white;
 }
 .r8 {
-  position: absolute;
+  position: fixed;
   top:30px;
   left: 860px;
   font-size: 15px;
   color : white;
 }
 .r9 {
-  position: absolute;
+  position: fixed;
   top:30px;
   left: 1180px;
   font-size: 15px;
   color : white;
 }
 .r10 {
-  position: absolute;
+  position: fixed;
   top:30px;
   left: 1250px;
   font-size: 15px;
