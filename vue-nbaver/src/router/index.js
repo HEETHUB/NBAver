@@ -9,6 +9,8 @@ import RankingView from '../views/RankingView.vue'
 import PlayerView from '../views/PlayerView.vue'
 import CommunityView from '../views/CommunityView.vue'
 import PredictionVoteView from '../views/PredictionVoteView.vue'
+import LoginView from '../views/LoginView.vue'
+import SignUpView from '../views/SignUpView.vue'
 
 
 Vue.use(VueRouter)
@@ -58,6 +60,16 @@ const routes = [
     path: '/prediction-vote',
     name: 'prediction-vote',
     component: PredictionVoteView
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: SignUpView
   }
 ]
 

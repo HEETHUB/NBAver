@@ -13,7 +13,9 @@
     <router-link to="/player" class="r6" style="text-decoration:none">선수 정보</router-link>
     <router-link to="/community" class="r7" style="text-decoration:none">커뮤니티</router-link>
     <router-link to="/prediction-vote" class="r8" style="text-decoration:none">승부 예측</router-link>
-
+    <img src="./assets/homepic/menuicon.png" class="menu-icon" />
+    <router-link to="/login" class="r9" style="text-decoration:none">로그인</router-link>
+    <router-link to="/signup" class="r10" style="text-decoration:none">회원가입</router-link>
     </nav>
     <router-view/>
   </div>
@@ -29,17 +31,23 @@
 }
 
 header {
-  background-color: #00E676;
+  background: linear-gradient(45deg,skyblue, lightGreen) ;
   width: 100%;
-  height: 50px;
+  height: 70px;
 }
 
 .logo {
   position: absolute;
-  top:10px;
+  top:20px;
   left: 100px;
   width: 120px;
   height: 50px;
+}
+
+.menu-icon {
+  position: absolute;
+  top: 26px;
+  left: 1100px;
 }
 
 nav {
@@ -58,59 +66,74 @@ nav a.router-link-exact-active {
 
 .r1 {
   position: absolute;
-  top:22px;
+  top:30px;
   left: 250px;
   font-size: 15px;
   color : white;
 }
 .r2 {
   position: absolute;
-  top:22px;
+  top:30px;
   left: 350px;
   font-size: 15px;
   color : white;
 }
 .r3 {
   position: absolute;
-  top:22px;
+  top:30px;
   left: 440px;
   font-size: 15px;
   color : white;
 }
 .r4 {
   position: absolute;
-  top:22px;
+  top:30px;
   left: 570px;
   font-size: 15px;
   color : white;
 }
 .r5 {
   position: absolute;
-  top:22px;
+  top:30px;
   left: 630px;
   font-size: 15px;
   color : white;
 }
 .r6 {
   position: absolute;
-  top:22px;
+  top:30px;
   left: 687px;
   font-size: 15px;
   color : white;
 }
 .r7 {
   position: absolute;
-  top:22px;
+  top:30px;
   left: 775px;
   font-size: 15px;
   color : white;
 }
 .r8 {
   position: absolute;
-  top:22px;
+  top:30px;
   left: 860px;
   font-size: 15px;
   color : white;
 }
+.r9 {
+  position: absolute;
+  top:30px;
+  left: 1180px;
+  font-size: 15px;
+  color : white;
+}
+.r10 {
+  position: absolute;
+  top:30px;
+  left: 1250px;
+  font-size: 15px;
+  color : white;
+}
+
 
 </style>
