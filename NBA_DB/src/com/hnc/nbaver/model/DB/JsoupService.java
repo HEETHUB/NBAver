@@ -36,10 +36,10 @@ public class JsoupService {
 			Connection conn_west = Jsoup.connect(url_west);
 			Document doc_west = conn_west.get();
 			Elements ele_west = doc_west.select("#regularTeamRecordList_table > tr");
-			for (Element e : ele_west) {
-				String conf = "WEST";
-				String[] stats = e.text().split(" ");
-				db.updateTeamStat(conf, stats);
+			for (Element e : ele_west) { 
+				String conf = "WEST"; 
+				String[] stats = e.text().split(" "); 
+				db.updateTeamStat(conf, stats); 
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

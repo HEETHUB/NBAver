@@ -9,4 +9,5 @@ public interface NBAService {
 	public List<NBAPlayer> getPlayerList();
 	public NBAPlayer getPlayer(String playerName);
 	public List<PlayerStat> getPlayerStat(int id);
+	public String getNews(String keyword);
 }

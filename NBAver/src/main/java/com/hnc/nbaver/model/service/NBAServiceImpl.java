@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hnc.nbaver.api.NaverApi;
 import com.hnc.nbaver.model.dao.NBADao;
 import com.hnc.nbaver.model.dto.NBAPlayer;
 import com.hnc.nbaver.model.dto.PlayerStat;
@@ -14,6 +15,9 @@ public class NBAServiceImpl implements NBAService {
 
 	@Autowired
 	private NBADao nbaDao;
+	
+	@Autowired
+	private NaverApi naverApi;
 	
 	@Override
 	public List<NBAPlayer> getPlayerList() {
@@ -28,6 +32,11 @@ public class NBAServiceImpl implements NBAService {
 	@Override
 	public List<PlayerStat> getPlayerStat(int id) {
 		return nbaDao.selectStatById(id);
+	}
+
+	@Override
+	public String getNews(String keyword) {
+		return naverApi.requestNews(keyword);
 	}
 
 }

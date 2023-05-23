@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ServerProperties.Tomcat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,5 +46,14 @@ public class NBARestController {
 		System.out.println(id);
 		List<PlayerStat> stat = nbaService.getPlayerStat(id);
 		return new ResponseEntity<List<PlayerStat>>(stat, HttpStatus.OK);
+	}
+	
+	// 검색한 뉴스 정보 가져오기
+	@GetMapping("/news/{keyword}")
+	public ResponseEntity<?> getNews(@PathVariable("keyword") String keyword){
+		String news = nbaService.getNews(keyword);
+		if (news == null)
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<String>(news, HttpStatus.OK);
 	}
 }
