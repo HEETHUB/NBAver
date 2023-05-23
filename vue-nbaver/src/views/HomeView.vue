@@ -1,12 +1,12 @@
 <template>
+  <body>
   <div class="home">  
-    <hr class="hr1"/>
-    <div class="home1">
-      <img src="../assets/homepic/LiveIcon.png" class="img1" />
-      <img src="../assets/homepic/matches.png" class="img2" />
-
+    <div class="home0">
+    <img src="../assets/homepic/LiveIcon.png" class="img1" />
     </div>
-
+    <div class="home1">
+      <img src="../assets/homepic/matches.png" class="img2" />
+    </div>
     <div class="home2">
       <img src="../assets/homepic/predictionvote.png" class="img3" />  
     </div>
@@ -20,10 +20,11 @@
       <hr class="hr90"/> <br/>
     </div>
     <img src="../assets/homepic/standings.png" class="img5" />
+    </div>
     <div class="footer">
       <p class="footer2">© 2023 (주)허앤조콤퓨타개발단. All rights reserved.</p>
     </div>
-  </div>
+  </body>
 </template>
 
 <script>
@@ -41,38 +42,49 @@ export default {
 </script>
 
 <style>
-
-
+  body{
+  margin: 0;
+  padding: 0;
+  }
+  .home{
+    display: table-row;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    padding-bottom: 100px;
+    
+  }
+  .home0{
+    position: relative;
+    margin-top:10%;
+  }
+  .home1{
+    position: relative;
+  }
+  .home2{
+    position: relative;
+    margin-top: 20%;
+  }
   .img1{
-    position: absolute;
-    top: 170px;
-    left:150px;
+    float:left;
     width: 50px;
     height: 25px;
 
   }
   .img2{
-    position: absolute;
-    top: 200px;
-    left:150px;
     width: 750px;
     height: 200px;
   }
   .img3{
-    position: absolute;
-    top: 200px;
-    left:950px;
     width: 350px;
     height: 200px;
   }
 
   .home3{
-    position: absolute;
-    top: 450px;
-    left: 150px;
     width: 750px;
     height: 580px;
-    background : linear-gradient(45deg,skyblue,lightGreen);
+    background: linear-gradient(45deg,skyblue, lightgreen,turquoise) ;;
     border-radius: 2%;
     font-weight: bold;
   }
@@ -81,16 +93,13 @@ export default {
     height:300px;
   }
   .img5{
-    position: absolute;
+    
     top: 530px;
     left: 980px;
     width:350px;
     height:1000px;
   }
   .home4{
-    position: absolute;
-    top: 450px;
-    left: 950px;
     width: 400px;
     height: 70px;
     background : linear-gradient(45deg,skyblue,lightGreen);
@@ -98,21 +107,11 @@ export default {
     font-weight: bold;
   }
 
-
   .inner-title{
     text-align: left;
     padding-left : 20px;
   }
 
-  .hr1{
-    position: fixed;
-    top: 67.4px;
-    width: 100%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    opacity: 0.5;
-    z-index: 9999;
-    
-  }
   .hr90{
     width : 90%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -120,18 +119,14 @@ export default {
   }
 
   footer{
-  background: linear-gradient(45deg,skyblue, lightGreen) ;
-  width: 100%;
-  height: 70px;
-  position: absolute;
-  bottom: 0;  
+    border-top: 1px solid linear-gradient(45deg,skyblue, lightGreen);
+    display: block;
+    width: 100%;
 }
 .footer2{
   font-weight: bold;
   font-size:15px;
-  position: absolute;
-  bottom: 0;
-  left:0;
+
   margin-left: 100px;
 }
 </style>
