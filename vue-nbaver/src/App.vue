@@ -32,24 +32,28 @@
 
 header {
   background: linear-gradient(45deg,skyblue, lightGreen) ;
+  max-width:1920px;
   width: 100%;
-  height: 70px;
+  height: 75px;
   position: fixed;
   top:0;
+  z-index : 9999;
 }
 
 .logo {
   position: fixed;
-  top:20px;
-  left: 100px;
-  width: 120px;
+  top:15px;
+  left: 300px;
+  width: 135px;
   height: 50px;
+  z-index : 9999;
 }
 
 .menu-icon {
   position: fixed;
   top: 26px;
-  left: 1100px;
+  left: 1390px;
+  z-index : 9999;
 }
 
 nav {
@@ -69,72 +73,82 @@ nav a.router-link-exact-active {
 .r1 {
   position: fixed;
   top:30px;
-  left: 250px;
+  left: 450px;
   font-size: 15px;
   color : white;
+  z-index : 9999;
 }
 .r2 {
   position: fixed;
   top:30px;
-  left: 350px;
+  left: 550px;
   font-size: 15px;
   color : white;
+  z-index : 9999;
 }
 .r3 {
   position: fixed;
   top:30px;
-  left: 440px;
+  left: 640px;
   font-size: 15px;
   color : white;
+  z-index : 9999;
 }
 .r4 {
   position: fixed;
   top:30px;
-  left: 570px;
+  left: 770px;
   font-size: 15px;
   color : white;
+  z-index : 9999;
 }
 .r5 {
   position: fixed;
   top:30px;
-  left: 630px;
+  left: 825px;
   font-size: 15px;
   color : white;
+  z-index : 9999;
 }
 .r6 {
   position: fixed;
   top:30px;
-  left: 687px;
+  left: 880px;
   font-size: 15px;
   color : white;
+  z-index : 9999;
 }
 .r7 {
   position: fixed;
   top:30px;
-  left: 775px;
+  left: 965px;
   font-size: 15px;
   color : white;
+  z-index : 9999;
 }
 .r8 {
   position: fixed;
   top:30px;
-  left: 860px;
+  left: 1050px;
   font-size: 15px;
   color : white;
+  z-index : 9999;
 }
 .r9 {
   position: fixed;
   top:30px;
-  left: 1180px;
+  left: 1450px;
   font-size: 15px;
   color : white;
+  z-index : 9999;
 }
 .r10 {
   position: fixed;
   top:30px;
-  left: 1250px;
+  left: 1520px;
   font-size: 15px;
   color : white;
+  z-index : 9999;
 }
 
 
