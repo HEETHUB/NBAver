@@ -1,6 +1,6 @@
 <template>
   <div class="home">  
-    <hr/>
+    <hr class="hr1"/>
     <div class="home1">
       <img src="../assets/homepic/LiveIcon.png" class="img1" />
       <img src="../assets/homepic/matches.png" class="img2" />
@@ -104,9 +104,14 @@ export default {
     padding-left : 20px;
   }
 
-  hr{
+  .hr1{
+    position: fixed;
+    top: 67.4px;
+    width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     opacity: 0.5;
+    z-index: 9999;
+    
   }
   .hr90{
     width : 90%;
