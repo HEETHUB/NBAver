@@ -1,6 +1,6 @@
 package com.hnc.nbaver.model.dto;
 
-public class Player_Stats {
+public class PlayerStat {
 	private String YEAR;
 	private String TEAM;
 	private int GP;
@@ -28,7 +28,7 @@ public class Player_Stats {
 	private int TD3;
 	private double MGN;
 	
-	public Player_Stats(String yEAR, String tEAM, int gP, double mIN, double pTS, double fGM, double fGA, double fGP, double pM3,
+	public PlayerStat(String yEAR, String tEAM, int gP, double mIN, double pTS, double fGM, double fGA, double fGP, double pM3,
 			double pA3, double pP3, double fTM, double fTA, double fTP, double oREB, double dREB, double rEB,
 			double aST, double tOV, double sTL, double bLK, double pF, double fP, int dD2, int tD3, double mGN) {
 		YEAR = yEAR;

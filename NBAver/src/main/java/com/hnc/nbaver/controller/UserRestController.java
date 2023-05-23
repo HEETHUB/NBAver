@@ -16,7 +16,7 @@ import com.hnc.nbaver.model.dto.User;
 import com.hnc.nbaver.model.service.UserService;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/server/user")
 public class UserRestController {
 	
 	@Autowired

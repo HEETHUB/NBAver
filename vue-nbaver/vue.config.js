@@ -4,7 +4,7 @@ module.exports = defineConfig({
   outputDir: "../src/main/resources/static",
   devServer: {
     proxy: {
-      "/api": {
+      "/server": {
         target: "http://localhost:2306",
         changeOrigin: true,
       },

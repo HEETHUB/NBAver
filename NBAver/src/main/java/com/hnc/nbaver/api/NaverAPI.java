@@ -9,44 +9,55 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
 
+import com.hnc.nbaver.model.dto.News;
+
 @Service
-public class NaverApi {
-//	private final RestTemplate restTemplate = new RestTemplate();
-	
+public class NaverAPI {
 	private final String CLIENT_ID = "IdUhKYEyXmOXeFy1NFKt";
 	private final String CLIENT_SECRET = "x8dJ64iwaM";
-	
 	private final String API_URL = "https://openapi.naver.com/v1/search/news.json?query=";
 	
-//	private NaverApi() {}
-//	
-//	public static void main(String[] args) {
-//		NaverApi t = new NaverApi();
-//		System.out.println(t.requestNews("NBA"));
-//	}
-	
-	public String requestNews(String keyword){
-		String text = null;
-		try {
-			text = URLEncoder.encode(keyword, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException("검색어 인코딩 실패", e);
-		}
-		
-		String searchURL = API_URL+text;
+	public List<News> requestNews(String keyword) throws IOException{
+		String searchURL = API_URL+URLEncoder.encode(keyword, "UTF-8");
 		
 		Map<String, String> requestHeaders = new HashMap<>();
 		requestHeaders.put("X-Naver-Client-Id", CLIENT_ID);
 		requestHeaders.put("X-Naver-Client-Secret", CLIENT_SECRET);
 		String responseBody = get(searchURL, requestHeaders);
 		
-		return responseBody;
+		List<News> newsList = new ArrayList<>();
+		
+		try {
+			JSONParser parser = new JSONParser();
+			JSONObject result = (JSONObject) parser.parse(responseBody);
+			
+			JSONArray items = (JSONArray) result.get("items");
+			
+			for (int i = 0; i < items.size(); i++) {
+				JSONObject item = (JSONObject) items.get(i);
+				String title = (String)item.get("title");
+				String originallink = (String) item.get("originallink");
+				String link = (String) item.get("link");
+				String description = (String) item.get("description");
+				String pubDate = (String) item.get("pubDate");
+				
+				News temp = new News(title, originallink, link, description, pubDate);
+				newsList.add(temp);
+			}
+		} catch (org.json.simple.parser.ParseException e) {
+			e.printStackTrace();
+		} 
+		return newsList;
 	}
 
 	private String get(String searchURL, Map<String, String> requestHeaders) {
@@ -89,7 +100,6 @@ public class NaverApi {
 		
 		try (BufferedReader lineReader = new BufferedReader(streamReader)){
 			StringBuilder responseBody = new StringBuilder();
-			
 			String line;
 			while ((line = lineReader.readLine()) != null) {
 				responseBody.append(line);
