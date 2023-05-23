@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hnc.nbaver.model.dao.NBADao;
 import com.hnc.nbaver.model.dto.NBAPlayer;
+import com.hnc.nbaver.model.dto.PlayerStat;
 
 @Service
 public class NBAServiceImpl implements NBAService {
@@ -22,6 +23,11 @@ public class NBAServiceImpl implements NBAService {
 	@Override
 	public NBAPlayer getPlayer(String playerName) {
 		return nbaDao.selectOne(playerName);
+	}
+
+	@Override
+	public List<PlayerStat> getPlayerStat(int id) {
+		return nbaDao.selectStatById(id);
 	}
 
 }

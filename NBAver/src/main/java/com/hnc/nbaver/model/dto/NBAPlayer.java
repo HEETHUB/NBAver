@@ -1,12 +1,12 @@
 package com.hnc.nbaver.model.dto;
 
 public class NBAPlayer {
+	private String link;
 	private String playerId;
 	private String playerName;
-	private String link;
 	private String birthDate;
 	
-	public NBAPlayer(String playerId, String playerName, String link, String birthDate) {
+	public NBAPlayer(String playerName, String link, String playerId, String birthDate) {
 		this.playerId = playerId;
 		this.playerName = playerName;
 		this.link = link;

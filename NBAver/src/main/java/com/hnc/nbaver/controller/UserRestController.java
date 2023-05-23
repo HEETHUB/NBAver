@@ -33,11 +33,11 @@ public class UserRestController {
 	// Log in
 	@PostMapping("login")
 	public ResponseEntity<?> login(User user, HttpSession session) {
-		User temp = userService.logIn(user.getUserId(), user.getPassword());
-		if (temp == null)
+		User loginUser = userService.logIn(user.getUserId(), user.getPassword());
+		if (loginUser == null)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-		session.setAttribute("loginUser", temp.getUserName());
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		session.setAttribute("loginUser", loginUser.getUserName());
+		return new ResponseEntity<User>(loginUser, HttpStatus.OK);
 	}
 	
 	// Log out

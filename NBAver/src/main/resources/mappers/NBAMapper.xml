@@ -10,5 +10,10 @@
 		SELECT * FROM nba_players
 		WHERE NBAName = #{playerName}
 	</select>
+	
+	<select id="selectStatById" parameterType="int" resultType="PlayerStat">
+		SELECT * FROM player_regular_stat
+		WHERE id = #{id}
+	</select>
 </mapper>
 
