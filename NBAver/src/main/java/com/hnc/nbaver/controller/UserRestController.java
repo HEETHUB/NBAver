@@ -50,13 +50,9 @@ public class UserRestController {
 	}
 	
 	// take all users
-<<<<<<< HEAD
-	
-=======
+
 //	@CrossOrigin(origins = "*", allowedHeaders = "*")
->>>>>>> 7d58da03139331c8b374995d676986ae6bee56b2
 	@GetMapping("users")
-	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public ResponseEntity<?> userList(){
 		List<User> list = userService.getUserList();
 		if (list == null || list.size() == 0)
