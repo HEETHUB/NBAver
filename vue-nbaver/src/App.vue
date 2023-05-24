@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="body">
   <div id="app">
     <div class="outer">
       <div class="header">
@@ -59,7 +59,7 @@
 </div>
 </template>
 
-<style scoped>
+<style>
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -74,12 +74,12 @@
 }
 
 .header {
-    background: linear-gradient(45deg,skyblue, lightgreen,turquoise) ;
+    background: black ;
     border-bottom: 1px solid #d6d6d6;
     box-sizing: content-box;
     height: 75px;
     width: 100%;
-    z-index: 30;
+    z-index: 100;
 }
 
 .logo_area{
@@ -152,6 +152,7 @@ nav a.router-link-exact-active {
     font-size: 15px;
     line-height: 18px;
     text-decoration: none;
+    color:#d6d6d6;
 }
 .r2{
     display: inline-block;
@@ -161,18 +162,21 @@ nav a.router-link-exact-active {
     margin-right: 10px;
     position: relative;
     text-align: center;
+  
 }
 .r3{
     position: relative;
     margin-left:10px;
     bottom: 6px;   
     text-decoration: none;
+    color:#d6d6d6;
 }
 .r4{
     position: relative; 
     bottom:6px;
     margin-left: 10px;
     text-decoration: none;
+    color:#d6d6d6;
 }
 
 .btn_gotop {
