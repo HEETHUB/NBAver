@@ -20,12 +20,7 @@
           <div class="label-input">
             <div class="input-group">
               <label for="password">비밀번호</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                v-model="password"
-              />
+              <input type="password" id="password" name="password" v-model="password" />
             </div>
           </div>
         </div>
@@ -33,8 +28,6 @@
           <div class="label-input">
             <div class="input-group">
               <label for="userName">이름</label>
-              <input type="text" id="userName" name="userName" v-model="userName">
-
               <input type="text" id="userName" name="userName" v-model="userName" />
         </div>
           </div>
