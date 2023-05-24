@@ -7,11 +7,10 @@
           <th>PlayerID</th>
           <th>PlayerName</th>
           <th>BirthDate</th>
-
         </tr>
       </thead>
       <tbody>
-        <tr v-for="player in players" :key="player.playerName">
+        <tr v-for="player in players" :key="player.playerId">
           <td>{{ player.link }}</td>
           <td>{{ player.playerId }}</td>
           <td>{{ player.playerName }}</td>
@@ -23,32 +22,29 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  data(){
+  data() {
     return {
-      players:[]
+      players: [],
     };
   },
-  mounted(){
+  mounted() {
     this.nbaPlayers();
   },
   methods: {
-    nbaPlayers(){
+    nbaPlayers() {
       axios
-      .get('http://localhost:2306/server/nba/all')
-      .then((response)=>{
-        this.players= response.data;
-      })
-      .catch((err)=>{
-        console.log(err);
-      });
-    }
-  }
-
-}
+        .get("http://localhost:2306/server/nba/all")
+        .then((response) => {
+          this.players = response.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

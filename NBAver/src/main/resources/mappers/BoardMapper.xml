@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnc.nbaver.model.dao.BoardDao">
+	<resultMap type="Board" id="boardMap">
+		<result column="id" property="id"/>
+		<result column="userId" property="userId"/>
+		<result column="title" property="title"/>
+		<result column="writer" property="writer"/>
+		<result column="viewCnt" property="viewCnt"/>
+		<result column="regDate" property="regDate"/>
+		<result column="content" property="content"/>
+	</resultMap>
+	
+	<insert id="insertBoard" parameterType="Board" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO board (id, userId, title, writer, content)
+		VALUES (#{id}, #{userId}, #{title}, #{writer}, #{content})
+	</insert>
+	
+	<update id="updateBoard" parameterType="Board">
+		UPDATE board
+		SET title = #{title}, text=#{text}, regDate=now()
+		WHERE id=#{id}
+	</update>
+	
+	<select id="selectAll" resultType="Board">
+		SELECT id, userId, title, writer, viewCnt, date_format(regDate, '%y-%m-%d %H:%i:%s') as regDate, text
+		FROM board
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultMap="boardMap">
+		SELECT id, userId, title, writer, viewCnt, date_format(regDate, '%y-%m-%d %H:%i:%s') as regDate, text
+		FROM board
+		WHERE id=#{id}
+	</select>
+	
+	<update id="updateViewCnt" parameterType="int">
+		UPDATE board
+		SET viewCnt = viewCnt+1
+		WHERE id = #{id}
+	</update>
+	
+	<select id="search" resultType="Board" parameterType="SearchCondition">
+		SELECT id, userId, title, writer, viewCnt, date_format(regDate, '%y-%m-%d %H:%i:%s') as regDate, text
+		FROM board
+		<if test="key != 'none'">
+			WHERE ${key} LIKE concat('%', #{word}, '%')
+		</if>
+		<if test="orderBy != 'none'">
+			ORDER BY ${orderBy} ${orderByDir}
+		</if>
+	</select>
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board
+		WHERE id = #{id}
+	</delete>
+</mapper>
