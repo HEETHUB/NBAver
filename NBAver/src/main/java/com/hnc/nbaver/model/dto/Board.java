@@ -11,6 +11,7 @@ public class Board {
 	
 	public Board() {}
 
+	// 게시글 생성을 위해!
 	public Board(String userId, String title, String writer, String content) {
 		this.userId = userId;
 		this.title = title;
@@ -18,6 +19,12 @@ public class Board {
 		this.content = content;
 	}
 	
+	// 게시글 수정을 위해!
+	public Board(String title, String writer, String content) {
+		this.title = title;
+		this.writer = writer;
+		this.content = content;
+	}
 	
 	public Board(int id, String userId, String title, String writer, int viewCnt, String regDate, String content) {
 		this.id = id;
@@ -83,5 +90,11 @@ public class Board {
 	
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	@Override
+	public String toString() {
+		return "Board [id=" + id + ", userId=" + userId + ", title=" + title + ", writer=" + writer + ", viewCnt="
+				+ viewCnt + ", regDate=" + regDate + ", content=" + content + "]";
 	}
 }

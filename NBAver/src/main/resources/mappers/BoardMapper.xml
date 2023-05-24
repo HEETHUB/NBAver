@@ -19,17 +19,17 @@
 	
 	<update id="updateBoard" parameterType="Board">
 		UPDATE board
-		SET title = #{title}, text=#{text}, regDate=now()
+		SET title = #{title}, content=#{content}, regDate=now()
 		WHERE id=#{id}
 	</update>
 	
 	<select id="selectAll" resultType="Board">
-		SELECT id, userId, title, writer, viewCnt, date_format(regDate, '%y-%m-%d %H:%i:%s') as regDate, text
+		SELECT id, userId, title, writer, viewCnt, date_format(regDate, '%y-%m-%d %H:%i:%s') as regDate, content
 		FROM board
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultMap="boardMap">
-		SELECT id, userId, title, writer, viewCnt, date_format(regDate, '%y-%m-%d %H:%i:%s') as regDate, text
+		SELECT id, userId, title, writer, viewCnt, date_format(regDate, '%y-%m-%d %H:%i:%s') as regDate, content
 		FROM board
 		WHERE id=#{id}
 	</select>
@@ -41,7 +41,7 @@
 	</update>
 	
 	<select id="search" resultType="Board" parameterType="SearchCondition">
-		SELECT id, userId, title, writer, viewCnt, date_format(regDate, '%y-%m-%d %H:%i:%s') as regDate, text
+		SELECT id, userId, title, writer, viewCnt, date_format(regDate, '%y-%m-%d %H:%i:%s') as regDate, content
 		FROM board
 		<if test="key != 'none'">
 			WHERE ${key} LIKE concat('%', #{word}, '%')

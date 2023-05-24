@@ -35,10 +35,9 @@ public class BoardRestController {
 	// 게시글 수정
 	@PutMapping("")
 	public ResponseEntity<?> update(Board board) {
-		if (boardService.getBoard(board.getId()) == null)
-			return new ResponseEntity<Void>(HttpStatus.NOT_MODIFIED);
+		System.out.println(board);
 		boardService.modifyBoard(board);
-		return new ResponseEntity<Board>(board, HttpStatus.OK);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
 	// 게시글 삭제

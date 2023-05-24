@@ -1,31 +1,49 @@
 package com.hnc.nbaver.model.dto;
 
 public class Match {
-	private String date;
+	private int month;
+	private int day;
+	private String dow;
 	private String hour;
 	private String teamLeft;
 	private String teamRight;
 	private String score;
-	private String stadium;
 	
 	public Match() {}
-	
-	public Match(String date, String hour, String teamLeft, String teamRight, String score, String stadium) {
+
+	public Match(int month, int day, String dow, String hour, String teamLeft, String teamRight, String score) {
 		super();
-		this.date = date;
+		this.month = month;
+		this.day = day;
+		this.dow = dow;
 		this.hour = hour;
 		this.teamLeft = teamLeft;
 		this.teamRight = teamRight;
 		this.score = score;
-		this.stadium = stadium;
 	}
 
-	public String getDate() {
-		return date;
+	public int getMonth() {
+		return month;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public String getDow() {
+		return dow;
+	}
+
+	public void setDow(String dow) {
+		this.dow = dow;
 	}
 
 	public String getHour() {
@@ -60,11 +78,5 @@ public class Match {
 		this.score = score;
 	}
 
-	public String getStadium() {
-		return stadium;
-	}
-
-	public void setStadium(String stadium) {
-		this.stadium = stadium;
-	}
+	
 }
