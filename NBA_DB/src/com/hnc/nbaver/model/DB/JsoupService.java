@@ -1,11 +1,14 @@
 package com.hnc.nbaver.model.DB;
 
 import java.io.IOException;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.hnc.nbaver.model.dto.Match;
 
 public class JsoupService {
 	private static JsoupService instance = new JsoupService();
@@ -14,6 +17,63 @@ public class JsoupService {
 	
 	public static JsoupService getInstance() {
 		return instance;
+	}
+	
+	public static void main(String[] args) {
+		getSchedule();
+	}
+	
+	public static void getSchedule() {
+		DBConnect db = DBConnect.getInstance();
+		String url = "https://sports.news.naver.com/basketball/schedule/index?category=nba";
+		
+		try {
+			Connection conn = Jsoup.connect(url);
+			Document doc = conn.get();
+			Elements ele_odd = doc.select("#content > div.sch_volleyball.tb_nba > div.sch_tb");//:nth-child(6)");
+			Elements ele_even = doc.select("#content > div.sch_volleyball.tb_nba > div.sch_tb2");//:nth-child(6)");
+			int size_odd = ele_odd.size();
+			int size_even = ele_even.size();
+			for (int i = 0; i < size_odd; i++) {
+				Element temp = ele_odd.get(i);
+				String[] schedule = temp.select(".td_date").text().split(" ");
+				String[] date = schedule[0].split("\\.");
+				int month = Integer.parseInt(date[0]);
+				int day = Integer.parseInt(date[1]);
+				String dow = schedule[1];
+				String[] hour = temp.select(".td_hour").text().split(" ");
+				String[] team_left = temp.select(".team_lft").text().split(" ");
+				String[] team_right = temp.select(".team_rgt").text().split(" ");
+				String[] score = temp.select(".td_score").text().split(" ");
+				int size = score.length;
+				for (int j = 0; j < size; j++) {
+					Match match = new Match(month, day, dow, hour[j], team_left[j], team_right[j], score[j]);
+					db.insertMatchSchedule(match);
+				}
+				
+				if (i < size_even) {
+					temp = ele_even.get(i);
+					schedule = temp.select(".td_date").text().split(" ");
+					date = schedule[0].split("\\.");
+					month = Integer.parseInt(date[0]);
+					day = Integer.parseInt(date[1]);
+					dow = schedule[1];
+					hour = temp.select(".td_hour").text().split(" ");
+					team_left = temp.select(".team_lft").text().split(" ");
+					team_right = temp.select(".team_rgt").text().split(" ");
+					score = temp.select(".td_score").text().split(" ");
+					size = score.length;
+					for (int j = 0; j < size; j++) {
+						Match match = new Match(month, day, dow, hour[j], team_left[j], team_right[j], score[j]);
+						db.insertMatchSchedule(match);
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("크롤링 실패!!", e);
+		}
+	
 	}
 	
 	public void updateTeamStat() {
