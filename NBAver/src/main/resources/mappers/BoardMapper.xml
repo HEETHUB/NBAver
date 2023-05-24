@@ -14,7 +14,7 @@
 	
 	<insert id="insertBoard" parameterType="Board" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO board (id, userId, title, writer, content)
-		VALUES (#{id}, #{userId}, #{title}, #[writer}, #{content})
+		VALUES (#{id}, #{userId}, #{title}, #{writer}, #{content})
 	</insert>
 	
 	<update id="updateBoard" parameterType="Board">

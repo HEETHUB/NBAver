@@ -29,8 +29,7 @@ public class BoardRestController {
 	@PostMapping("")
 	public ResponseEntity<?> write(Board board) {
 		boardService.writeBoard(board);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
-//		return new ResponseEntity<Board>(board, HttpStatus.CREATED);
+		return new ResponseEntity<Board>(board, HttpStatus.CREATED);
 	}
 	
 	// 게시글 수정
