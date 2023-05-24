@@ -1,32 +1,47 @@
 <template>
   <div class="signup">
     <form method="post" action="main" @submit="handleSubmit">
-      <img src="@/assets/NBAVER LOGO TRANSPARENT.png" style="width: 250px; position:relative; bottom: 30px;"/>
+      <img
+        src="@/assets/NBAVER LOGO TRANSPARENT.png"
+        style="width: 250px; position: relative; bottom: 30px"
+      />
       <fieldset>
         <legend>회원가입</legend>
         <div class="form-group">
           <div class="label-input">
-            <label for="id">아이디</label>
+            <label for="userId">아이디</label>
             <div class="input-group">
-              <input type="text" id="id" name="id" v-model="id">
+              <input type="text" id="userId" name="userId" v-model="userId" />
               <button @click="checkAvailability">중복 확인</button>
             </div>
           </div>
-          <div v-if="duplicateMessage" class="duplicate-message">{{ duplicateMessage }}</div>
+          <div v-if="duplicateMessage" class="duplicate-message">
+            {{ duplicateMessage }}
+          </div>
         </div>
         <div class="form-group">
           <div class="label-input">
             <div class="input-group">
               <label for="password">비밀번호</label>
-              <input type="password" id="password" name="password" v-model="password">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                v-model="password"
+              />
             </div>
           </div>
         </div>
         <div class="form-group">
           <div class="label-input">
             <div class="input-group">
-              <label for="name">이름</label>
-              <input type="text" id="name" name="name" v-model="name">
+              <label for="userName">이름</label>
+              <input
+                type="text"
+                id="userName"
+                name="userName"
+                v-model="userName"
+              />
             </div>
           </div>
         </div>
@@ -34,13 +49,13 @@
           <div class="label-input">
             <div class="input-group">
               <label for="email">이메일</label>
-              <input type="email" id="email" name="email" v-model="email">
+              <input type="email" id="email" name="email" v-model="email" />
             </div>
           </div>
         </div>
         <div class="form-actions">
-          <input type="submit" value="등록"> &nbsp;
-          <input type="reset" value="초기화">
+          <input type="submit" value="등록" /> &nbsp;
+          <input type="reset" value="초기화" />
         </div>
       </fieldset>
     </form>
@@ -48,28 +63,27 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
     return {
-      userId: '',
-      password: '',
-      userName: '',
-      email: '',
-      duplicateMessage: '',
+      userId: "",
+      password: "",
+      userName: "",
+      email: "",
+      duplicateMessage: "",
     };
   },
   methods: {
-
     handleSubmit(event) {
       event.preventDefault();
       const isValid = this.validateForm();
-  
+
       if (isValid) {
         // Make an API request to register the user
         axios
-          .post('http://localhost:2306/server/user/signup', {
+          .post("http://localhost:2306/server/user/signup", {
             userId: this.userId,
             password: this.password,
             userName: this.userName,
@@ -77,13 +91,13 @@ export default {
           })
           .then(() => {
             // Assuming the registration is successful
-            alert('회원가입이 완료되었습니다.');
+            alert("회원가입이 완료되었습니다.");
             this.resetForm();
           })
           .catch((error) => {
             console.error(error);
             // Display an error message if registration fails
-            alert('회원가입에 실패하였습니다. 다시 시도해주세요.');
+            alert("회원가입에 실패하였습니다. 다시 시도해주세요.");
           });
       }
     },
@@ -91,24 +105,26 @@ export default {
       if (!this.userId || !this.password || !this.userName || !this.email) {
         return false;
       }
-      if (this.duplicateMessage !== '사용 가능한 아이디입니다.') {
+      if (this.duplicateMessage !== "사용 가능한 아이디입니다.") {
         return false;
       }
       return true;
     },
-    
+
     checkAvailability() {
       axios
         .get(`http://localhost:2306/server/user/users`)
         .then((response) => {
           const userList = response.data;
-          const duplicateUser = userList.find((user) => user.userId === this.userId);
+          const duplicateUser = userList.find(
+            (user) => user.userId === this.userId
+          );
           if (duplicateUser) {
-            alert('이미 사용 중인 아이디입니다.');
-            this.duplicateMessage = '';
+            alert("이미 사용 중인 아이디입니다.");
+            this.duplicateMessage = "";
           } else {
-            alert('사용 가능한 아이디입니다.');
-            this.duplicateMessage = '사용 가능한 아이디입니다.';
+            alert("사용 가능한 아이디입니다.");
+            this.duplicateMessage = "사용 가능한 아이디입니다.";
           }
         })
         .catch((error) => {
@@ -116,10 +132,10 @@ export default {
         });
     },
     resetForm() {
-      this.userId = '';
-      this.password = '';
-      this.userName = '';
-      this.email = '';
+      this.userId = "";
+      this.password = "";
+      this.userName = "";
+      this.email = "";
     },
   },
 };
@@ -175,7 +191,7 @@ legend {
 
 .input-group input[type="text"],
 .input-group input[type="password"],
-.input-group input[type="email"]  {
+.input-group input[type="email"] {
   flex: 1;
   width: 100%;
   padding: 8px;
@@ -183,11 +199,9 @@ legend {
   border: 1px solid #ccc;
 }
 
-
-
 button {
   padding: 8px 15px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 3px;
@@ -212,7 +226,7 @@ button:hover {
 .form-actions input[type="submit"],
 .form-actions input[type="reset"] {
   padding: 8px 15px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 3px;
@@ -224,5 +238,3 @@ button:hover {
   background-color: #45a049;
 }
 </style>
-
-
