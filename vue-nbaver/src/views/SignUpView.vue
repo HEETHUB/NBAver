@@ -1,14 +1,14 @@
 <template>
   <div class="signup">
-    <form method="post" action="main" @submit="handleSubmit">
+    <form method="post" @submit="handleSubmit">
       <img src="@/assets/NBAVER LOGO TRANSPARENT.png" style="width: 250px; position:relative; bottom: 30px;"/>
       <fieldset>
         <legend>회원가입</legend>
         <div class="form-group">
           <div class="label-input">
-            <label for="id">아이디</label>
+            <label for="userId">아이디</label>
             <div class="input-group">
-              <input type="text" id="id" name="id" v-model="id">
+              <input type="text" id="userId" name="userId" v-model="userId">
               <button @click="checkAvailability">중복 확인</button>
             </div>
           </div>
@@ -25,8 +25,8 @@
         <div class="form-group">
           <div class="label-input">
             <div class="input-group">
-              <label for="name">이름</label>
-              <input type="text" id="name" name="name" v-model="name">
+              <label for="userName">이름</label>
+              <input type="text" id="userName" name="userName" v-model="userName">
             </div>
           </div>
         </div>
@@ -61,7 +61,6 @@ export default {
     };
   },
   methods: {
-
     handleSubmit(event) {
       event.preventDefault();
       const isValid = this.validateForm();
