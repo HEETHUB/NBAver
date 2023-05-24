@@ -163,21 +163,17 @@ export default {
 }
 
 
-/* * {
-  box-sizing: border-box;
-  scrollbar-color: transparent transparent; /* thumb and track color */
-  /* scrollbar-width: 0px;
-} */ 
 
-*::-webkit-scrollbar {
+.slick__viewport::-webkit-scrollbar {
   width: 0;
 }
 
-*::-webkit-scrollbar-track {
+.slick__viewport::-webkit-scrollbar-track {
   background: transparent;
+  scrollbar-width: 0px;
 }
 
-*::-webkit-scrollbar-thumb {
+.slick__viewport::-webkit-scrollbar-thumb {
   background: transparent;
   border: none;
 }
