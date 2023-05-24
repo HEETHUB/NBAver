@@ -1,26 +1,14 @@
 <template>
   <div class="signup">
-<<<<<<< HEAD
     <form method="post" @submit="handleSubmit">
       <img src="@/assets/NBAVER LOGO TRANSPARENT.png" style="width: 250px; position:relative; bottom: 30px;"/>
-=======
-    <form method="post" action="main" @submit="handleSubmit">
-      <img
-        src="@/assets/NBAVER LOGO TRANSPARENT.png"
-        style="width: 250px; position: relative; bottom: 30px"
-      />
->>>>>>> 7d58da03139331c8b374995d676986ae6bee56b2
       <fieldset>
         <legend>회원가입</legend>
         <div class="form-group">
           <div class="label-input">
             <label for="userId">아이디</label>
             <div class="input-group">
-<<<<<<< HEAD
-              <input type="text" id="userId" name="userId" v-model="userId">
-=======
               <input type="text" id="userId" name="userId" v-model="userId" />
->>>>>>> 7d58da03139331c8b374995d676986ae6bee56b2
               <button @click="checkAvailability">중복 확인</button>
             </div>
           </div>
@@ -45,17 +33,10 @@
           <div class="label-input">
             <div class="input-group">
               <label for="userName">이름</label>
-<<<<<<< HEAD
               <input type="text" id="userName" name="userName" v-model="userName">
-=======
-              <input
-                type="text"
-                id="userName"
-                name="userName"
-                v-model="userName"
-              />
->>>>>>> 7d58da03139331c8b374995d676986ae6bee56b2
-            </div>
+
+              <input type="text" id="userName" name="userName" v-model="userName" />
+        </div>
           </div>
         </div>
         <div class="form-group">
