@@ -28,7 +28,7 @@ public class NaverAPI {
 	private final String API_URL = "https://openapi.naver.com/v1/search/news.json?query=";
 	
 	public List<News> requestNews(String keyword) throws IOException{
-		String searchURL = API_URL+URLEncoder.encode(keyword, "UTF-8")+"&sort=sim";
+		String searchURL = API_URL+URLEncoder.encode(keyword, "UTF-8")+"&sort=sim&display=100";
 		
 		Map<String, String> requestHeaders = new HashMap<>();
 		requestHeaders.put("X-Naver-Client-Id", CLIENT_ID);

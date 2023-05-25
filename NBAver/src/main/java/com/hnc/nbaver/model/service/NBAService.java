@@ -10,7 +10,7 @@ import com.hnc.nbaver.model.dto.TeamStat;
 import com.hnc.nbaver.model.dto.Video;
 
 public interface NBAService {
-	public List<NBAPlayer> getPlayerList();
+	public List<PlayerStat> getPlayerList();
 	public NBAPlayer getPlayer(String playerName);
 	public List<PlayerStat> getPlayerStat(int id);
 	public List<TeamStat> getTeamStat();

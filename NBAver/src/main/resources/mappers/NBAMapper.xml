@@ -2,11 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hnc.nbaver.model.dao.NBADao">
-	<select id="selectAll" resultType="NBAPlayer">
-		SELECT * FROM nba_players
+	<select id="selectAll" resultType="PlayerStat">
+		SELECT * FROM player_regular_stat
+		WHERE year = '2022-23'
 	</select>
 
-	<select id="selectOne" parameterType="String" resultType="NBAPlayer">
+	<select id="selectOne" parameterType="String" resultType="PlayerStat">
 		SELECT * FROM nba_players
 		WHERE NBAName = #{playerName}
 	</select>

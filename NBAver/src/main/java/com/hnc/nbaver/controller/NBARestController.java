@@ -30,10 +30,10 @@ public class NBARestController {
 	@GetMapping("/all")
 //	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public ResponseEntity<?> playerList(){
-		List<NBAPlayer> list = nbaService.getPlayerList();
+		List<PlayerStat> list = nbaService.getPlayerList();
 		if (list == null || list.size() == 0)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-		return new ResponseEntity<List<NBAPlayer>>(list, HttpStatus.OK);
+		return new ResponseEntity<List<PlayerStat>>(list, HttpStatus.OK);
 	}
 	
 	// 검색한 선수 정보 가져오기
