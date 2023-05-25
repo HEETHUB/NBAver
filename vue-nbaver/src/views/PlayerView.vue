@@ -1,9 +1,8 @@
 <template>
   <div class="player-view">
-    <div class="search-bar">
       <input type="text" v-model="searchName" placeholder="선수 검색" class="player-search" />
-    </div>
     <div class="table-container">
+      <h2 style="text-align: left; margin-bottom: 30px;">선수 정보</h2>
       <table>
         <thead>
           <tr>
@@ -109,16 +108,6 @@ export default {
 
 <style scoped>
 /* 검색바 스타일링 */
-.search-bar {
-  display: flex;
-  align-items: center;
-  position: relative;
-  top: 100px;
-  padding-right: 10px;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
 
 .player-search {
   flex: 1;
@@ -127,6 +116,8 @@ export default {
   border-radius: 4px;
   width: 120px;
   height: 20px;
+  margin-top:50px;
+  margin-left: 800px;
 }
 
 .search-icon {
@@ -139,7 +130,7 @@ export default {
 
 /* 테이블 스타일링 */
 .table-container {
-  margin-top: 130px;
+  margin-top: -20px;
   position: relative;
 }
 
