@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <form method="get" @submit="handleSubmit">
+    <form method="post">
       <img src="@/assets/NBAVER LOGO TRANSPARENT.png" style="width: 250px; position:relative; bottom: 30px;"/>
       <fieldset>
         <legend>로그인</legend>
@@ -10,9 +10,6 @@
             <div class="input-group">
               <input type="text" id="userId" name="userId" v-model="userId" />
             </div>
-          </div>
-          <div v-if="duplicateMessage" class="duplicate-message">
-            {{ duplicateMessage }}
           </div>
         </div>
         <div class="form-group">
@@ -24,8 +21,9 @@
           </div>
         </div>
         <div class="form-actions">
-          <input type="submit" value="로그인" /> &nbsp;
+          <button @click="handleSubmit">로그인</button> &nbsp;
         </div>
+        <!-- <span v-if="errorMessage" class="error-message">{{ errorMessage }}</span> -->
           <span>계정이 없으신가요?</span> &nbsp;
           <router-link to="/signup" class="signup_in_login">회원가입</router-link>
       </fieldset>
@@ -36,46 +34,41 @@
 <script>
 import axios from "axios";
 
-
 export default {
   data() {
     return {
       userId: "",
       password: "",
-      userName: "",
-      email: "",
-      duplicateMessage: "",
+      errorMessage: ""
     };
   },
   methods: {
     handleSubmit(event) {
-      event.preventDefault(); // 폼의 기본 동작인 페이지 새로고침 방지
-
-      // 서버로 보낼 데이터
-      const data = {
-        userId: this.userId,
-        password: this.password,
-      };
-
-      // GET 요청 보내기
-      axios.get("/login", { params: data })
-        .then(response => {
-          // 응답 처리
-          const result = response.data;
-          if (result.success) {
-            // 로그인 성공
+      event.preventDefault();
+      this.loginSuccess();
+    },
+    loginSuccess(){
+      axios
+        .get("http://localhost:2306/server/user/users")
+        .then((response) => {
+          const userList = response.data;
+          const checkId = userList.find((user)=>user.userId===this.userId);
+          const checkPw = userList.find((user)=>user.password===this.password);
+          if (checkId && checkPw) {
             alert("로그인 성공!");
-            // 로그인 성공 시 리다이렉트 등 필요한 작업 수행
+            this.$router.push("/login-complete");
           } else {
-            // 로그인 실패
-            this.duplicateMessage = "아이디와 비밀번호를 확인해주세요.";
+            alert("아이디와 비밀번호가 일치하지 않습니다.");
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
-        });
-    },
-  },
+          alert("로그인 요청에 실패했습니다.");
+        })
+    }
+
+
+  }
 };
 </script>
 

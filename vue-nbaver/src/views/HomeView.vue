@@ -340,10 +340,6 @@ ol, li {
 }
 
 
-
-
-
-
   .home{
     display: table-row;
     position: relative;

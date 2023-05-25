@@ -100,12 +100,10 @@ export default {
 
     checkAvailability() {
       axios
-        .get(`http://localhost:2306/server/user/users`)
+        .get("http://localhost:2306/server/user/users")
         .then((response) => {
           const userList = response.data;
-          const duplicateUser = userList.find(
-            (user) => user.userId === this.userId
-          );
+          const duplicateUser = userList.find((user) => user.userId === this.userId);
           if (duplicateUser) {
             alert("이미 사용 중인 아이디입니다.");
             this.duplicateMessage = "";
