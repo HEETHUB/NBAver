@@ -3,6 +3,8 @@ package com.hnc.nbaver.model.dto;
 public class Board {
 	private int id;
 	private String userId;
+	private int playerId;
+	private String team;
 	private String title;
 	private String writer;
 	private int viewCnt;
@@ -12,23 +14,28 @@ public class Board {
 	public Board() {}
 
 	// 게시글 생성을 위해!
-	public Board(String userId, String title, String writer, String content) {
+	public Board(String userId, int playerId, String team, String title, String writer, String content) {
 		this.userId = userId;
+		this.playerId = playerId;
+		this.team = team;
 		this.title = title;
 		this.writer = writer;
 		this.content = content;
 	}
 	
 	// 게시글 수정을 위해!
-	public Board(String title, String writer, String content) {
+	public Board(String team, String title, String writer, String content) {
+		this.team = team;
 		this.title = title;
 		this.writer = writer;
 		this.content = content;
 	}
 	
-	public Board(int id, String userId, String title, String writer, int viewCnt, String regDate, String content) {
+	public Board(int id, String userId, int playerId, String team, String title, String writer, int viewCnt, String regDate, String content) {
 		this.id = id;
 		this.userId = userId;
+		this.playerId = playerId;
+		this.team = team;
 		this.title = title;
 		this.writer = writer;
 		this.viewCnt = viewCnt;
@@ -42,6 +49,22 @@ public class Board {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getPlayerId() {
+		return playerId;
+	}
+
+	public void setPlayerId(int playerId) {
+		this.playerId = playerId;
+	}
+
+	public String getTeam() {
+		return team;
+	}
+
+	public void setTeam(String team) {
+		this.team = team;
 	}
 
 	public String getUserId() {
