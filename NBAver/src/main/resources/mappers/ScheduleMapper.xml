@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnc.nbaver.model.dao.ScheduleDao">
+	<select id="selectMonthSchedule" resultType="Match">
+		SELECT * FROM game_schedule
+		WHERE `month` = 5
+	</select>
+	
+	<select id="selectDaySchedule" parameterType="int" resultType="Match">
+		SELECT * FROM game_schedule
+		WHERE `month` = 5 and `day` = #{day}
+	</select>
+</mapper>

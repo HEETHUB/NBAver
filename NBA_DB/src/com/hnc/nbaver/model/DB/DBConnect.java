@@ -1,6 +1,9 @@
 package com.hnc.nbaver.model.DB;
 
 import java.util.*;
+
+import com.hnc.nbaver.model.dto.Match;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -116,6 +119,29 @@ public class DBConnect {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("데이터 입력 실패");
+		}
+	}
+	
+	public void insertMatchSchedule(Match match) {
+		String sql = "INSERT INTO game_schedule VALUES(?,?,?,?,?,?,?)";
+		
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, match.getMonth());
+			pstmt.setInt(2, match.getDay());
+			pstmt.setString(3, match.getDow());
+			pstmt.setString(4, match.getHour());
+			pstmt.setString(5, match.getTeamLeft());
+			pstmt.setString(6, match.getTeamRight());
+			pstmt.setString(7, match.getScore());
+			
+			int result = pstmt.executeUpdate();
+			if (result == 1)
+				System.out.println(match.getMonth()+"."+match.getDay()+"자 데이터 입력 성공!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("데이터 입력 실패 ㅠㅠ", e);
 		}
 	}
 }

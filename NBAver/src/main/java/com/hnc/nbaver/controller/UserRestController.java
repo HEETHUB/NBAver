@@ -8,10 +8,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +22,7 @@ import com.hnc.nbaver.model.dto.User;
 import com.hnc.nbaver.model.service.UserService;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/server/user")
 public class UserRestController {
 	
 	@Autowired
@@ -28,7 +30,7 @@ public class UserRestController {
 	
 	// 회원가입
 	@PostMapping("signup")
-	public ResponseEntity<User> signUp(User user){
+	public ResponseEntity<User> signUp(@RequestBody User user){
 		System.out.println(user.getUserName()+"님을 새로운 유저로 등록합니다.");
 		userService.signUp(user);
 		return new ResponseEntity<User>(user, HttpStatus.CREATED);
@@ -52,6 +54,8 @@ public class UserRestController {
 	}
 	
 	// take all users
+
+//	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping("users")
 	public ResponseEntity<?> userList(){
 		List<User> list = userService.getUserList();

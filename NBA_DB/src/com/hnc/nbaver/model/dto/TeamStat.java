@@ -1,6 +1,6 @@
 package com.hnc.nbaver.model.dto;
 
-public class TeamStats {
+public class TeamStat {
 	private String SNAME;
 	private int RANK;
 	private String FNAME;
@@ -18,9 +18,9 @@ public class TeamStats {
 	private int DL;
 	private String STREAK;
 	
-	public TeamStats() {}
+	public TeamStat() {}
 
-	public TeamStats(int rANK, String fNAME, String sNAME, String dIV, int gP, int w, int l, double wINP, double gB,
+	public TeamStat(int rANK, String fNAME, String sNAME, String dIV, int gP, int w, int l, double wINP, double gB,
 			int hW, int hL, int rW, int rL, int dW, int dL, String sTREAK) {
 		RANK = rANK;
 		FNAME = fNAME;

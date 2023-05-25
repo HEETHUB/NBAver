@@ -15,5 +15,9 @@
 		SELECT * FROM player_regular_stat
 		WHERE id = #{id}
 	</select>
+	
+	<select id="selectAllTeam" resultType="TeamStat">
+		SELECT * FROM team_stat
+	</select>
 </mapper>
 
