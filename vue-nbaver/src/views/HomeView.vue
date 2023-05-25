@@ -1,95 +1,35 @@
 <template>
-  <body>
-  <div class="home">  
-    <div class="home0">
-    <img src="../assets/homepic/LiveIcon.png" class="img1" />
-    </div>
-    <div class="home1">
-      <img src="../assets/homepic/matches.png" class="img2" />
-    </div>
-    <div class="home2">
-      <img src="../assets/homepic/predictionvote.png" class="img3" />  
-    </div>
+<body>
+  <div class="home">
     <div class="home3">
       <p class="inner-title">하이라이트 영상</p>
-      <hr class="hr90"/> <br/>
-      
-
-
+      <hr class="hr90" /><br />
 
       <section class="slick" aria-label="Gallery">
-  <ol class="slick__viewport">
-    <li id="carousel__slide1"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper">
-        <a href="#carousel__slide4"
-           class="carousel__prev">Go to last slide</a>
-        <a href="#carousel__slide2"
-           class="carousel__next">Go to next slide</a>
+        <ol class="slick__viewport">
+          <li v-for="(video, index) in videos" :key="index" :id="`carousel__slide${index + 1}`" tabindex="0" class="carousel__slide">
+            <div class="carousel__snapper">
+              <router-link to="/highlight">
+                <img :src="getYouTubeThumbnailUrl(video.videoId)" class="thumbnail-image" :alt="`Video Thumbnail ${index + 1}`" />
+              </router-link>
+            </div>
+          </li>
+        </ol>
+        <aside class="carousel__navigation">
+          <ol class="carousel__navigation-list">
+            <li v-for="(video, index) in videos" :key="index" class="carousel__navigation-item">
+              <a :href="`#carousel__slide${index + 1}`" class="carousel__navigation-button"></a>
+            </li>
+          </ol>
+        </aside>
+      </section>
+        <img src="../assets/homepic/highlightcapture.png" class="img4"/>
       </div>
-    </li>
-    <li id="carousel__slide2"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide1"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide3"
-         class="carousel__next">Go to next slide</a>
-    </li>
-    <li id="carousel__slide3"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide2"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide4"
-         class="carousel__next">Go to next slide</a>
-    </li>
-    <li id="carousel__slide4"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide3"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide1"
-         class="carousel__next">Go to first slide</a>
-    </li>
-  </ol>
-  <aside class="carousel__navigation">
-    <ol class="carousel__navigation-list">
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide1"
-           class="carousel__navigation-button">Go to slide 1</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide2"
-           class="carousel__navigation-button">Go to slide 2</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide3"
-           class="carousel__navigation-button">Go to slide 3</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide4"
-           class="carousel__navigation-button">Go to slide 4</a>
-      </li>
-    </ol>
-  </aside>
-</section>
-
-
-
-
-
-      <img src="../assets/homepic/highlightcapture.png" class="img4"/>
-    </div>
-    <div class="home4">
-      <p class="inner-title">2022-23 팀 순위</p>
-      <hr class="hr90"/> <br/>
-    </div>
-    <img src="../assets/homepic/standings.png" class="img5" />
+      <div class="home4">
+        <p class="inner-title">2022-23 팀 순위</p>
+        <hr class="hr90"/> <br/>
+      </div>
+      <img src="../assets/homepic/standings.png" class="img5" />
     </div>
     <div class="footer">
       <p class="footer2">© 2023 (주)허앤조콤퓨타개발단. All rights reserved.</p>
@@ -98,26 +38,51 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-
-
+import axios from 'axios';
 
 export default {
   name: 'HomeView',
-  components: {
-    
-  }
-}
+  data() {
+    return {
+      videos: [],
+      activeSlide: 0,
+    };
+  },
+  mounted() {
+    this.fetchVideos();
+    this.startCarousel();
+  },
+  methods: {
+    async fetchVideos() {
+      try {
+        const response = await axios.get('http://localhost:2306/server/nba/videos/nba%20playoffs%20highlights%202023%20may');
+        this.videos = response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    getYouTubeThumbnailUrl(videoId) {
+      return `https://img.youtube.com/vi/${videoId}/0.jpg`;
+    },
+    startCarousel() {
+      setInterval(() => {
+        this.nextSlide();
+      }, 5000); // Change slide every 5 seconds (adjust as needed)
+    },
+    nextSlide() {
+      this.activeSlide = (this.activeSlide + 1) % this.videos.length;
+    },
+  },
+};
 </script>
 
 <style>
-  body{
+body {
   margin: 0;
   padding: 0;
-  }
+}
 
-  @keyframes tonext {
+@keyframes tonext {
   75% {
     left: 0;
   }
@@ -162,8 +127,6 @@ export default {
   }
 }
 
-
-
 .slick__viewport::-webkit-scrollbar {
   width: 0;
 }
@@ -182,7 +145,8 @@ export default {
   -ms-overflow-style: none;
 }
 
-ol, li {
+ol,
+li {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -207,20 +171,17 @@ ol, li {
   display: flex;
   overflow-x: scroll;
   counter-reset: item;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   scroll-snap-type: x mandatory;
+   scroll-padding: 0 10px;
 }
 
 .carousel__slide {
   position: relative;
   flex: 0 0 100%;
   width: 100%;
-  background-color: #f99;
-  counter-increment: item;
-}
 
-.carousel__slide:nth-child(even) {
-  background-color: #99f;
+  counter-increment: item;
 }
 
 .carousel__slide:before {
@@ -228,9 +189,10 @@ ol, li {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate3d(-50%,-40%,70px);
+  transform: translate3d(-50%, -40%, 70px);
   color: #fff;
   font-size: 2em;
+  display: none; /* 숫자 숨김 */
 }
 
 .carousel__snapper {
@@ -239,20 +201,21 @@ ol, li {
   left: 0;
   width: 100%;
   height: 100%;
-  scroll-snap-align: center;
+  scroll-snap-align: none;
+  
 }
 
 @media (hover: hover) {
   .carousel__snapper {
-    animation-name: tonext, snap;
+    animation-name: tonext,snap;
     animation-timing-function: ease;
-    animation-duration: 4s;
+    animation-duration: 5s;
     animation-iteration-count: infinite;
   }
 
-  .carousel__slide:last-child .carousel__snapper {
-    animation-name: tostart, snap;
-  }
+  /* .carousel__slide:last-child .carousel__snapper {
+    animation-name: tostart;
+  } */
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -279,7 +242,7 @@ ol, li {
   display: inline-block;
 }
 
-.carousel__navigation-button {
+/* .carousel__navigation-button {
   display: inline-block;
   width: 1.5rem;
   height: 1.5rem;
@@ -289,7 +252,7 @@ ol, li {
   border-radius: 50%;
   font-size: 0;
   transition: transform 0.1s;
-}
+} */
 
 .carousel::before,
 .carousel::after,
@@ -339,89 +302,69 @@ ol, li {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
 }
 
-
-  .home{
-    display: table-row;
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    margin: 0 auto;
-    padding-bottom: 100px;
-    
-  }
-  .home0{
-    position: relative;
-    margin-top:10%;
-  }
-  .home1{
-    position: relative;
-  }
-  .home2{
-    position: relative;
-    margin-top: 20%;
-  }
-  .img1{
-    float:left;
-    width: 50px;
-    height: 25px;
-
-  }
-  .img2{
-    width: 750px;
-    height: 200px;
-  }
-  .img3{
-    width: 350px;
-    height: 200px;
-  }
-
-  .home3{
-    margin-top: 200px;
-    width: 750px;
-    height: 580px;
-    background-color: lightgray;
-    border-radius: 2%;
-    font-weight: bold;
-  }
-  .img4{
-    width:450px;
-    height:300px;
-  }
-  .img5{
-    
-    top: 530px;
-    left: 980px;
-    width:350px;
-    height:1000px;
-  }
-  .home4{
-    width: 400px;
-    height: 70px;
-    background : linear-gradient(45deg,skyblue,lightGreen);
-    border-radius: 2%;
-    font-weight: bold;
-  }
-
-  .inner-title{
-    text-align: left;
-    padding-left : 20px;
-  }
-
-  .hr90{
-    width : 90%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    opacity: 0.5;
-  }
-
-  footer{
-    border-top: 1px solid linear-gradient(45deg,skyblue, lightGreen);
-    display: block;
-    width: 100%;
+.home {
+  display: table-row;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  padding-bottom: 100px;
 }
-.footer2{
-  font-weight: bold;
-  font-size:15px;
 
+.home3 {
+  margin-top: 100px;
+  width: 1000px;
+  height: 700px;
+  background-color: lightgray;
+  border-radius: 2%;
+  font-weight: bold;
+}
+
+.img4 {
+  width: 450px;
+  height: 300px;
+}
+
+.img5 {
+  top: 530px;
+  left: 980px;
+  width: 350px;
+  height: 1000px;
+}
+
+.home4 {
+  width: 400px;
+  height: 70px;
+  background: linear-gradient(45deg, skyblue, lightGreen);
+  border-radius: 2%;
+  font-weight: bold;
+}
+
+.inner-title {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.hr90 {
+  width: 90%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  opacity: 0.5;
+}
+
+.thumbnail-image{
+  width:850px;
+ 
+}
+
+footer {
+  border-top: 1px solid linear-gradient(45deg, skyblue, lightGreen);
+  display: block;
+  width: 100%;
+}
+
+.footer2 {
+  font-weight: bold;
+  font-size: 15px;
   margin-left: 100px;
 }
 </style>

@@ -56,7 +56,10 @@ export default {
           const checkPw = userList.find((user)=>user.password===this.password);
           if (checkId && checkPw) {
             alert("로그인 성공!");
+
+            sessionStorage.setItem("userId", this.userId);
             this.$router.push("/");
+            location.reload();
           } else {
             alert("아이디와 비밀번호가 일치하지 않습니다.");
           }

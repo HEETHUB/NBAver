@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TodaysGameView from '../views/TodaysGameView.vue'
-import ScheduleView from '../views/ScheduleView.vue'
+import Match from '../views/Match.vue'
 import HighlightView from '../views/HighlightView.vue'
 import NewsView from '../views/NewsView.vue'
 import RankingView from '../views/RankingView.vue'
@@ -27,9 +27,9 @@ const routes = [
     component: TodaysGameView
   },
   {
-    path: '/schedule',
-    name: 'schedule',
-    component: ScheduleView
+    path: '/match',
+    name: 'match',
+    component: Match
   },
   {
     path: '/highlight',

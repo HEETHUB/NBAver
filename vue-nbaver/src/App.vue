@@ -11,12 +11,12 @@
            </div>
             <div class="menu_area">  
               <ul>
-                <li>
+                <!-- <li>
                   <router-link to="/todays-game" class="r1">오늘의 경기</router-link>
                 </li>
                 <li>
-                  <router-link to="/schedule" class="r1">경기 일정</router-link>
-                </li>
+                  <router-link to="/match" class="r1">경기 일정</router-link>
+                </li> -->
                 <li>
                    <router-link to="/highlight" class="r1">하이라이트 영상</router-link>
                 </li>
@@ -37,16 +37,27 @@
                 </li>
               </ul>
            </div>
-          <div class="login_area">
-             <span class="r2">
-               <img src="./assets/homepic/menuicon.png"/>
-             </span>
-             <span class="r3" >   
-               <router-link to="/login" class="r3" >로그인</router-link>  
-            </span>
-            <span class="r4">
-               <router-link to="/signup" class="r4">회원가입</router-link>
-           </span>       
+               <div class="login_area">
+            <!-- 세션에 사용자 ID가 있을 경우 -->
+            <div v-if="isAuthenticated">
+              <span class="r2">
+                <img src="./assets/homepic/menuicon.png" />
+              </span>
+              <span class="r3">{{ userId }}</span>
+              <span class="r4" @click="logout">로그아웃</span>
+            </div>
+            <!-- 세션에 사용자 ID가 없을 경우 -->
+            <div v-else>
+              <span class="r2">
+                <img src="./assets/homepic/menuicon.png" />
+              </span>
+              <span class="r3">
+                <router-link to="/login" class="r3">로그인</router-link>
+              </span>
+              <span class="r4">
+                <router-link to="/signup" class="r4">회원가입</router-link>
+              </span>
+            </div>
           </div>
            <router-view></router-view>
         </div>
@@ -58,7 +69,28 @@
   </div>
 </div>
 </template>
-
+<script>
+export default {
+  computed: {
+    isAuthenticated() {
+      // 세션에 사용자 ID가 있는지 확인하여 인증 여부 반환
+      return sessionStorage.getItem("userId") !== null;
+    },
+    userId() {
+      // 세션에 저장된 사용자 ID 반환
+      return sessionStorage.getItem("userId");
+    },
+  },
+  methods: {
+    logout() {
+      // 세션에서 사용자 ID 삭제 후 로그아웃 처리
+      sessionStorage.removeItem("userId");
+      alert("로그아웃되었습니다.");
+      location.reload();
+    },
+  },
+};
+</script>
 <style>
 
 #app {

@@ -79,7 +79,7 @@ export default {
           .then(() => {
             // Assuming the registration is successful
             alert("회원가입이 완료되었습니다.");
-            this.resetForm();
+            this.$router.push("/login");
           })
           .catch((error) => {
             console.error(error);
