@@ -27,7 +27,7 @@
                    <router-link to="/ranking" class="r1">랭킹</router-link>
                 </li>
                 <li>
-                  <router-link to="/player" class="r1" >선수 정보</router-link>
+                  <router-link to="/player-view" class="r1" >선수 정보</router-link>
                 </li>
                 <li>
                    <router-link to="/community" class="r1">커뮤니티</router-link>
@@ -41,7 +41,7 @@
              <span class="r2">
                <img src="./assets/homepic/menuicon.png"/>
              </span>
-             <span class="r3">   
+             <span class="r3" >   
                <router-link to="/login" class="r3" >로그인</router-link>  
             </span>
             <span class="r4">

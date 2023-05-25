@@ -47,8 +47,8 @@ const routes = [
     component: RankingView
   },
   {
-    path: '/player',
-    name: 'player',
+    path: '/player-view',
+    name: 'player-view',
     component: PlayerView
   },
   {
