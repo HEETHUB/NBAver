@@ -28,7 +28,7 @@ public class NBAServiceImpl implements NBAService {
 	private NaverAPI naverApi;
 	
 	@Override
-	public List<NBAPlayer> getPlayerList() {
+	public List<PlayerStat> getPlayerList() {
 		return nbaDao.selectAll();
 	}
 

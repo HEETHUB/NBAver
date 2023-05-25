@@ -7,7 +7,7 @@ import com.hnc.nbaver.model.dto.PlayerStat;
 import com.hnc.nbaver.model.dto.TeamStat;
 
 public interface NBADao {
-	public List<NBAPlayer> selectAll();
+	public List<PlayerStat> selectAll();
 	public NBAPlayer selectOne(String playerName);
 	public List<PlayerStat> selectStatById(int id);
 	public List<TeamStat> selectAllTeam();
