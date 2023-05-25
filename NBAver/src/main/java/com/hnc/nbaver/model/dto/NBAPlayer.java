@@ -5,6 +5,8 @@ public class NBAPlayer {
 	private String playerId;
 	private String playerName;
 	private String birthDate;
+
+	
 	
 	public NBAPlayer(String playerName, String link, String playerId, String birthDate) {
 		this.playerId = playerId;
