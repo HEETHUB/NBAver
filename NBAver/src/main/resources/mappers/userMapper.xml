@@ -15,4 +15,14 @@
 		SELECT * FROM users
 		WHERE userId = #{userId}
 	</select>
+	
+	<insert id="bet" parameterType="String">
+		INSERT INTO betting
+		VALUES (#{userId}, #{side})
+	</insert>
+	
+	<select id="selectBettingResult" resultType="Betting">
+		SELECT team, COUNT(userId) as num FROM betting
+		GROUP BY team;
+	</select>
 </mapper>
