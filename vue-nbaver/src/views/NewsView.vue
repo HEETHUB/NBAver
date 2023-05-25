@@ -1,15 +1,19 @@
 <template>
-  <div class="news">
-    <div class="search-bar">
-      <input type="text" v-model="searchNews" placeholder="뉴스 검색" class="news-search" />
-    </div>
+ <div class="news">
+    <div>
+        <input type="text" v-model="searchNews" placeholder="뉴스 검색" class="news-search" @keydown.enter="searchNewsFn" />
+      </div>
     <ul class="news-list">
+     <h2 style="text-align: left;">최신 뉴스</h2>
       <li v-for="paper in paginatedNews" :key="paper.title" class="news-item">
         <a :href="paper.originallink" target="_blank" class="news-title" v-html="formatTitle(paper.title)"></a><br>
         <p class="news-description" v-html="formatTitle(paper.description)"></p>
         <p class="news-pubdate">{{ paper.pubDate }}</p>
       </li>
     </ul>
+    <div v-if="filteredNews.length === 0" style="text-align: center; margin-top: 20px;">
+      검색 결과가 없습니다.
+    </div>
     <div class="pagination">
       <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
       <button v-for="pageNumber in visiblePages" :key="pageNumber" @click="changePage(pageNumber)" :class="{ active: currentPage === pageNumber }">
@@ -29,8 +33,8 @@ export default {
       news: [],
       searchNews: "",
       currentPage: 1,
-      newsPerPage: 20,
-      visiblePageCount: 5,
+      newsPerPage: 15,
+      visiblePageCount: 7,
     };
   },
   mounted() {
@@ -56,6 +60,12 @@ export default {
 
       return formattedTitle;
     },
+
+    searchNewsFn() {
+      if (this.searchNews.trim() !== "") {
+        this.currentPage = 1;
+      }
+    },
     changePage(pageNumber) {
       this.currentPage = pageNumber;
     },
@@ -72,8 +82,14 @@ export default {
   },
   computed: {
     filteredNews() {
-      return this.news.filter((paper) =>
-        paper.title.toLowerCase().includes(this.searchNews.toLowerCase())
+      if (this.searchNews === "") {
+        return this.news;
+      }
+      const searchTerm = this.searchNews.toLowerCase();
+      return this.news.filter(
+        (paper) =>
+          paper.title.toLowerCase().includes(searchTerm) ||
+          paper.description.toLowerCase().includes(searchTerm)
       );
     },
     paginatedNews() {
@@ -97,30 +113,24 @@ export default {
 
 <style scoped>
 /* 검색바 스타일링 */
-.search-bar {
-  display: flex;
-  align-items: center;
-  position: relative;
-  top: 100px;
-  padding-right: 10px;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+
 
 .news-search {
   flex: 1;
-  margin: 0;
+  margin-top: 40px;
+  margin-left: 800px;
   padding: 6px;
   border-radius: 4px;
   width: 120px;
   height: 20px;
 }
-
+button {
+  margin-left: 10px;
+}
 /* 리스트 스타일링 */
 .news-list {
   list-style: none;
-  margin-top: 130px;
+  margin-top: -70px;
   padding: 0;
 }
 
