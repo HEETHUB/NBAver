@@ -75,4 +75,22 @@ public class BoardRestController {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		return new ResponseEntity<List<Board>>(list, HttpStatus.OK);
 	}
+	
+	// 선수별 게시판 
+	@GetMapping("player/{playerId}")
+	public ResponseEntity<?> searchByPlayerId(@PathVariable("playerId")int playerId){
+		List<Board> list = boardService.searchByPlayerId(playerId);
+		if (list == null || list.size() == 0)
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<List<Board>>(list, HttpStatus.OK);
+	}
+	
+	// 팀별 게시판 
+		@GetMapping("team/{team}")
+		public ResponseEntity<?> searchByTeam(@PathVariable("team")String team){
+			List<Board> list = boardService.searchByTeam(team);
+			if (list == null || list.size() == 0)
+				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<List<Board>>(list, HttpStatus.OK);
+		}
 }

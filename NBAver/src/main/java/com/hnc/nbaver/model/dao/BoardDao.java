@@ -21,4 +21,8 @@ public interface BoardDao {
 
 	void deleteBoard(int id);
 
+	List<Board> selectByPlayerId(int playerId);
+
+	List<Board> selectByTeam(String team);
+
 }

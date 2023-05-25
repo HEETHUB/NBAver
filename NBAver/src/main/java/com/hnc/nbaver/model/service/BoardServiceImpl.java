@@ -51,4 +51,16 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.deleteBoard(id);
 	}
 
+	@Override
+	public List<Board> searchByPlayerId(int playerId) {
+		System.out.println("get all posts about "+playerId);
+		return boardDao.selectByPlayerId(playerId);
+	}
+
+	@Override
+	public List<Board> searchByTeam(String team) {
+		System.out.println("get all posts about "+team);
+		return boardDao.selectByTeam(team);
+	}
+
 }

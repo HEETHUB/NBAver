@@ -18,5 +18,9 @@ public interface BoardService {
 	List<Board> search(SearchCondition condition);
 
 	void removeBoard(int id);
+
+	List<Board> searchByPlayerId(int playerId);
+
+	List<Board> searchByTeam(String team);
 	
 }
