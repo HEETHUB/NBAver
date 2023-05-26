@@ -18,6 +18,89 @@ USE `nbadb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `betting`
+--
+
+DROP TABLE IF EXISTS `betting`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `betting` (
+  `userId` varchar(30) NOT NULL,
+  `team` char(1) DEFAULT NULL,
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `betting`
+--
+
+LOCK TABLES `betting` WRITE;
+/*!40000 ALTER TABLE `betting` DISABLE KEYS */;
+INSERT INTO `betting` VALUES ('a','L'),('b','R'),('c','L'),('d','L'),('heet','L'),('jquad','L');
+/*!40000 ALTER TABLE `betting` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `board`
+--
+
+DROP TABLE IF EXISTS `board`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `board` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userId` varchar(50) NOT NULL,
+  `playerId` int DEFAULT '0',
+  `team` char(3) DEFAULT NULL,
+  `title` varchar(100) NOT NULL,
+  `writer` varchar(50) NOT NULL,
+  `viewCnt` int DEFAULT '0',
+  `regDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `content` longtext,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `board`
+--
+
+LOCK TABLES `board` WRITE;
+/*!40000 ALTER TABLE `board` DISABLE KEYS */;
+INSERT INTO `board` VALUES (3,'heet',2544,'LAL','그냥','그냥 허재웅',0,'2023-05-25 06:24:20','나다');
+/*!40000 ALTER TABLE `board` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `game_schedule`
+--
+
+DROP TABLE IF EXISTS `game_schedule`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `game_schedule` (
+  `month` int DEFAULT NULL,
+  `day` int DEFAULT NULL,
+  `dow` varchar(5) DEFAULT NULL,
+  `hour` varchar(10) DEFAULT NULL,
+  `teamLeft` varchar(20) DEFAULT NULL,
+  `teamRight` varchar(20) DEFAULT NULL,
+  `score` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `game_schedule`
+--
+
+LOCK TABLES `game_schedule` WRITE;
+/*!40000 ALTER TABLE `game_schedule` DISABLE KEYS */;
+INSERT INTO `game_schedule` VALUES (5,1,'(월)','02:00','마이애미','뉴욕','108:101'),(5,1,'(월)','04:30','골든스테이트','새크라멘토','120:100'),(5,2,'(화)','08:30','필라델피아','보스턴','119:115'),(5,2,'(화)','11:00','피닉스','덴버','87:97'),(5,3,'(수)','08:30','마이애미','뉴욕','105:111'),(5,3,'(수)','11:00','LA레이커스','골든스테이트','117:112'),(5,4,'(목)','09:00','필라델피아','보스턴','87:121'),(5,5,'(금)','10:00','LA레이커스','골든스테이트','100:127'),(5,6,'(토)','08:30','보스턴','필라델피아','114:102'),(5,6,'(토)','11:00','덴버','피닉스','114:121'),(5,7,'(일)','04:30','뉴욕','마이애미','86:105'),(5,7,'(일)','09:30','골든스테이트','LA레이커스','97:127'),(5,8,'(월)','04:30','보스턴','필라델피아','115:116'),(5,8,'(월)','09:00','덴버','피닉스','124:129'),(5,9,'(화)','08:30','뉴욕','마이애미','101:109'),(5,9,'(화)','11:00','골든스테이트','LA레이커스','101:104'),(5,10,'(수)','08:30','필라델피아','보스턴','115:103'),(5,10,'(수)','11:00','피닉스','덴버','102:118'),(5,11,'(목)','08:30','마이애미','뉴욕','103:112'),(5,11,'(목)','11:00','LA레이커스','골든스테이트','106:121'),(5,12,'(금)','08:30','보스턴','필라델피아','95:86'),(5,12,'(금)','11:00','덴버','피닉스','125:100'),(5,13,'(토)','08:30','뉴욕','마이애미','92:96'),(5,13,'(토)','11:00','골든스테이트','LA레이커스','101:122'),(5,14,'(일)','-','','',''),(5,15,'(월)','04:30','필라델피아','보스턴','88:112'),(5,16,'(화)','-','','',''),(5,17,'(수)','09:30','LA레이커스','덴버','126:132'),(5,18,'(목)','09:30','마이애미','보스턴','123:116'),(5,19,'(금)','09:30','LA레이커스','덴버','103:108'),(5,20,'(토)','09:30','마이애미','보스턴','111:105'),(5,21,'(일)','09:30','덴버','LA레이커스','119:108'),(5,22,'(월)','09:30','보스턴','마이애미','102:128'),(5,23,'(화)','09:30','덴버','LA레이커스','113:111'),(5,24,'(수)','09:30','보스턴','마이애미','116:99'),(5,25,'(목)','-','','',''),(5,26,'(금)','09:30','마이애미','보스턴','VS'),(5,27,'(토)','-','','',''),(5,28,'(일)','09:30','보스턴','마이애미','VS'),(5,29,'(월)','-','','',''),(5,30,'(화)','09:30','마이애미','보스턴','VS'),(5,31,'(수)','-','','','');
+/*!40000 ALTER TABLE `game_schedule` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `nba_players`
 --
 
@@ -176,8 +259,31 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('ssafy','1234','김싸피','ssafy@ssafy.com');
+INSERT INTO `users` VALUES ('chossafy','1234','힅힅','chossafy@ssafy.com'),('ssafy','1234','김싸피','ssafy@ssafy.com');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `voting_table`
+--
+
+DROP TABLE IF EXISTS `voting_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `voting_table` (
+  `teamLeft` int DEFAULT NULL,
+  `teamRight` int DEFAULT NULL,
+  `outcome` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `voting_table`
+--
+
+LOCK TABLES `voting_table` WRITE;
+/*!40000 ALTER TABLE `voting_table` DISABLE KEYS */;
+/*!40000 ALTER TABLE `voting_table` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -189,4 +295,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-20 14:45:12
+-- Dump completed on 2023-05-26 10:03:10

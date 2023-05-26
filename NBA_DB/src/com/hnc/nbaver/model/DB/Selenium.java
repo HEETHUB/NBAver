@@ -36,7 +36,7 @@ public class Selenium {
 			int playerId = Integer.parseInt(players.get(i)[2]);
 			String url = "https://www.nba.com/stats/player/"+players.get(i)[2];
 			try {
-				System.out.println("�� "+playerNum+"���� ���� �� "+(i+1)+"��° "+playerName+"�� ������ �޾ƿ��� ��");
+//				System.out.println("�� "+playerNum+"���� ���� �� "+(i+1)+"��° "+playerName+"�� ������ �޾ƿ��� ��");
 				driver.get(url);
 				WebElement table = driver.findElement(By.cssSelector("#__next > div.Layout_base__6IeUC.Layout_justNav__2H4H0 > div.Layout_mainContent__jXliI > section > div.MaxWidthContainer_mwc__ID5AG > section.Block_block__62M07.nba-stats-content-block > div > div.Crom_base__f0niE > div.Crom_container__C45Ti.crom-container > table > tbody"));
 				String[] stat_arr = table.getText().split("\n");
