@@ -18,7 +18,8 @@ import com.hnc.nbaver.model.dto.Video;
 @Service
 public class YoutubeAPI {
 //	private final String API_KEY = "AIzaSyCq_ZPl2zwSxymsp6GFQCLnRNhdv38msCI";
-	private final String API_KEY = "AIzaSyCOIZ_xjudMvNWg1RbD8bwSn3LnFIoqBlk";
+	private final String API_KEY = "AIzaSyB5IQAHuZnfAy3BDXPmBKSd6_RRDDLg0bE";
+//	private final String API_KEY = "AIzaSyCOIZ_xjudMvNWg1RbD8bwSn3LnFIoqBlk";
 	private final String API_URL = "https://www.googleapis.com/youtube/v3/search"
 									+"?key="+API_KEY
 									+"&part=snippet&type=video&maxResults=20&videoEmbeddable=true";
