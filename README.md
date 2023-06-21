@@ -30,8 +30,8 @@ what to do -> build backend server and DB normalization!!
 - This is my DB's ERD made so far
 <img src="https://github.com/HEETHUB/NBAver/assets/113952597/f48120a1-ce1d-4cbe-8762-4af3b3f4f8ea">
 
-### Here's a mockup image we're planning to make!! (some parts are copied from naver sports section)
-<img src="https://github.com/HEETHUB/NBAver/assets/97331332/86893e6e-f9fd-420d-9379-03b6b82ce9ad">
+<!-- ### Here's a mockup image we're planning to make!! (some parts are copied from naver sports section)
+<img src="https://github.com/HEETHUB/NBAver/assets/97331332/86893e6e-f9fd-420d-9379-03b6b82ce9ad"> -->
 
 ### Here's a indexpage image we're making. 
 [IndexPage] - localhost:8081
